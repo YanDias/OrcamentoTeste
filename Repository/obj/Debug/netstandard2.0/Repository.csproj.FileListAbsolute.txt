@@ -1,0 +1,5 @@
+C:\Users\yanrd\source\repos\OrcamentoTeste\Repository\bin\Debug\netstandard2.0\Repository.deps.json
+C:\Users\yanrd\source\repos\OrcamentoTeste\Repository\bin\Debug\netstandard2.0\Repository.dll
+C:\Users\yanrd\source\repos\OrcamentoTeste\Repository\obj\Debug\netstandard2.0\Repository.csprojAssemblyReference.cache
+C:\Users\yanrd\source\repos\OrcamentoTeste\Repository\obj\Debug\netstandard2.0\Repository.AssemblyInfoInputs.cache
+C:\Users\yanrd\source\repos\OrcamentoTeste\Repository\obj\Debug\netstandard2.0\Repository.AssemblyInfo.cs
