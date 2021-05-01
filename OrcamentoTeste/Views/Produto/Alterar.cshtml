@@ -1,0 +1,42 @@
+﻿@model Produto
+@{
+    ViewData["Title"] = "Alterar";
+}
+<center>
+    <h2>Alterar Aluno</h2>
+</center>
+<br />
+<form asp-action="AlterarProduto" method="post">
+    <fieldset>
+        <legend>Alterar Produto</legend>
+        <div class="form-group">
+            
+            <input class="form-control"
+                   type="text" readonly=""
+                   asp-for="idProduto" hidden />
+           
+        </div>
+
+        <div class="form-group">
+            <label>Nome:</label>
+            <input type="text" class="form-control"
+                   asp-for="nome" />
+        </div>
+
+        <div class="form-group">
+            <label>Valor:</label>
+            <input type="text" class="form-control"
+                   asp-for="Valor" />
+        </div>
+        <div class="form-group" id="SubCategoria">
+            <label>SubCategoria</label>
+            <select asp-items="@ViewBag.Sub"
+                    class="form-control"
+                    name="drpSub">
+                <option> -- SELECIONE -- </option>
+            </select>
+        </div>
+        </div>
+        <input type="submit" class="btn btn-success" value="Salvar" />
+    </fieldset>
+</form>

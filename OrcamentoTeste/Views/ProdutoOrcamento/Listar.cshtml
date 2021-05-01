@@ -1,0 +1,58 @@
+﻿@model List<ProdutoOrcamento>
+@{
+    double vltP;
+    double vltS ;
+    double vlTotal = 0;
+    
+}
+<div>
+    <h2>Orçamento: @ViewBag.nome </h2>
+    <table class="table table-hover table-striped"
+           style="margin-top:15px;margin-bottom:15px">
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Categoria</th>
+                <th>Valor Unitario</th>
+                <th>Quantidade</th>
+                <th>Valor Total</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ProdutoOrcamento item in Model)
+            {
+               
+                vltP = @item.Quantidade * @item.Produto.Valor;
+                vlTotal = vlTotal + vltP;
+            <tr>
+                <td>@item.Produto.nome</td>
+                <td>@item.Produto.SubCategoria.nome</td>
+                <td>@item.Produto.Valor</td>
+                <td>@item.Quantidade</td>
+                <td>@vltP</td>
+
+                <td>
+                    <div>
+                        <form asp-action="Remover" method="post">
+                            <input name="id" value="@item.IdProdutoOrcamento" hidden />
+                            <input name="key" value="@item.Orcamento.IdOrcamento" hidden />
+                            <input type="submit" class="btn btn-warning" value="Remover" />
+                        </form>
+                    </div>
+                </td>
+
+            </tr>
+                
+                
+            }
+
+
+
+        </tbody>
+    </table>
+<h4 align="right">Valor Total do Orçamento @vlTotal</h4>
+</div>
+
+
+

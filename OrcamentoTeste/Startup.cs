@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Repository;
 
 namespace OrcamentoTeste
 {
@@ -31,9 +32,23 @@ namespace OrcamentoTeste
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddScoped<SubCategoriaDAO>();
+            services.AddScoped<ProdutoDAO>();
+            services.AddScoped<OrcamentoDAO>();
+            services.AddScoped<ProdutoOrcamentoDAO>();
+            services.AddHttpContextAccessor();
+
+            services.AddDbContext<Context>
+                (options => options.UseSqlServer
+                (Configuration.GetConnectionString("Connection")));
+
+            //Configuração da sessão antes do services.AddMvc()
+            services.AddSession();
+            services.AddDistributedMemoryCache();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

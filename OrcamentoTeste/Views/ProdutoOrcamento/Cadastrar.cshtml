@@ -1,0 +1,94 @@
+﻿
+@{
+    List<dynamic> list = new List<dynamic>();
+    ProdutoOrcamento pd = new ProdutoOrcamento();
+    var cont = 0;
+
+
+    <h2>Cadastro Orçamento</h2>
+    <br />
+    <a asp-action="Listar"
+       asp-route-id="@ViewBag.Key"
+       class="btn btn-danger">
+        Concluir Orçamento
+    </a>
+    <br />
+
+    <table class="table table-hover table-striped"
+           style="margin-top:15px;margin-bottom:15px">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Valor</th>
+                <th>Categoria</th>
+                <th>Quantidade</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < ViewBag.produtos.Count; i++)
+            {
+                <tr>
+                    <td>@ViewBag.produtos[i].nome</td>
+                    <td>@ViewBag.produtos[i].Valor</td>
+
+
+                    <td>@ViewBag.produtos[i].SubCategoria.nome</td>
+
+
+                    <td>
+                        <form asp-action="Cadastrar" method="post">
+                            <input name="id" value="@ViewBag.produtos[i].idProduto" hidden />
+                            <input name="key" value="@ViewBag.Key" hidden />
+                            <input name="quantidade" type="number" />
+                            <input type="submit" value="Adicionar" />
+                        </form>
+                    </td>
+                </tr>
+                cont++;
+            }
+
+
+
+
+
+        </tbody>
+
+    </table>
+
+     @if(ViewBag.selecionados != null)
+    {
+        <table class="table">
+            <thead class="table-info">
+                ...
+                <tr>
+                    <th>Nome</th>
+                    <th>Valor</th>
+                    <th>Categoria</th>
+                    <th>Quantidade</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < ViewBag.selecionados.Count; i++)
+                {
+                    <tr>
+                        <td>@ViewBag.selecionados[i].Produto.nome</td>
+                        <td>@ViewBag.selecionados[i].Produto.Valor</td>
+                        <td>@ViewBag.selecionados[i].Produto.SubCategoria.nome</td>
+                        <td>@ViewBag.selecionados[i].Quantidade</td>
+
+                    </tr>
+                    cont++;
+                }
+
+
+
+
+            </tbody>
+        </table>
+    }
+}
+
+
+
+
+

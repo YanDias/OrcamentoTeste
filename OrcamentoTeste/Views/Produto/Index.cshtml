@@ -1,0 +1,49 @@
+﻿@model List<Produto>
+
+<div align="center"><h2>Produtos</h2></div>
+<table class="table table-hover table-striped"
+       style="margin-top:15px;margin-bottom:15px">
+    <thead>
+        <tr>
+            <th>Produto</th>
+            <th>Valor</th>
+            <th>Categoria</th>
+            <th></th>
+            <th></th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Produto item in Model)
+        {
+
+            <tr>
+                <td>@item.nome</td>
+                <td>@item.Valor</td>
+                <td>@item.SubCategoria.nome</td>
+                
+                <td>
+                    <a asp-action="Alterar"
+                       name="key"
+                       asp-route-id="@item.idProduto"
+                       class="btn btn-info">
+                        Alterar
+                    </a>
+                </td>
+                <td>
+                    <form asp-action="Remover" method="post">
+                        <input name="id" value="@item.idProduto" hidden />
+                        <input type="submit" class="btn btn-warning" value="Remover" />
+                    </form></td>
+            </tr>
+
+
+
+
+        }
+
+    </tbody>
+</table>
+<div>
+    <a asp-action="Cadastrar" class="btn btn-success"> Cadastrar Novo</a>
+</div>
